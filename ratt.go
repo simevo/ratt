@@ -25,6 +25,16 @@ import (
 	"pault.ag/go/debian/version"
 )
 
+func Filter(m map[string][]version.Version, f func(string) bool) map[string][]version.Version {
+	mf := make(map[string][]version.Version, 0)
+	for k,v := range m {
+		if f(k) {
+			mf[k]=v
+		}
+	}
+	return mf
+}
+
 type buildResult struct {
 	src            string
 	version        *version.Version
@@ -292,6 +302,12 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+        var interesting = regexp.MustCompile(`^(hwloc|fltk1.3|wcslib|ccfits|qevercloud|libstxxl|caffe|frobby|starpu)$`)
+        rebuild = Filter(rebuild, func(v string) bool {
+                var matched = interesting.MatchString(v)
+                return matched
+        })
+        fmt.Println("rebuild:", rebuild)
 
 	// TODO: add -recursive flag to also cover dependencies which are not DIRECT dependencies. use http://godoc.org/pault.ag/go/debian/control#OrderDSCForBuild (topsort) to build dependencies in the right order (saving CPU time).
 
