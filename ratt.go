@@ -302,7 +302,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-        var interesting = regexp.MustCompile(`^(hwloc|fltk1.3|wcslib|ccfits|qevercloud|libstxxl|caffe|frobby|starpu)$`)
+        var interesting = regexp.MustCompile(`^(hwloc|fltk1.3|wcslib|ccfits|qevercloud|libstxxl|caffe|frobby|starpu|librostlab-blast|toulbar2|primesieve)$`)
         rebuild = Filter(rebuild, func(v string) bool {
                 var matched = interesting.MatchString(v)
                 return matched
