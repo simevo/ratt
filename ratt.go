@@ -302,10 +302,10 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-        var interesting = regexp.MustCompile(`^(hwloc|fltk1.3|wcslib|ccfits|qevercloud|libstxxl|caffe|frobby|starpu|librostlab-blast|toulbar2|primesieve)$`)
+        var not_interesting = regexp.MustCompile(`^(gcc-9|gcc-8|llvm-toolchain-10|libreoffice|trilinos|llvm-toolchain-9|llvm-toolchain-8|llvm-toolchain-7|gcc-snapshot|gcc-10|deal.ii|kodi|vg|qgis|openms|siconos|ball|gtg-trace|libsbml|dcmtk|gromacs|gudhi|kicad|libpwiz)$`)
         rebuild = Filter(rebuild, func(v string) bool {
-                var matched = interesting.MatchString(v)
-                return matched
+                var matched = not_interesting.MatchString(v)
+                return !matched
         })
         fmt.Println("rebuild:", rebuild)
 
