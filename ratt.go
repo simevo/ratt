@@ -302,7 +302,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-        var interesting = regexp.MustCompile(`^(hwloc|fltk1.3|wcslib|ccfits|qevercloud|libstxxl|caffe|frobby|starpu|librostlab-blast|toulbar2|primesieve)$`)
+        var interesting = regexp.MustCompile(`^(aroarfw|atlas-ecmwf|avr-libc|bliss|caffe|ccfits|coinor-csdp|coinor-dylp|coinor-ipopt|coinor-symphony|dsdp|eigen3|fastjet|fflas-ffpack|fltk1.3|freefem|ftgl|gazebo|gdcm|genparse|givaro|gnuift|gr-radar|gtg-trace|gyoto|hepmc|hwloc|imagemagick|krb5|libcaca|libdc1394|libdc1394-22|libemf|libitpp|librsb|libstxxl|libvdpau|linbox|log4c|mlpack|mpich|mrpt|msgpack-c|openigtlink|openvdb|pcl|ppl|primesieve|range-v3|rivet|rlog|simbody|siscone|speech-tools|starpu|toulbar2|ucommon|uhd|vtk6|vtk7)$`)
         rebuild = Filter(rebuild, func(v string) bool {
                 var matched = interesting.MatchString(v)
                 return matched
